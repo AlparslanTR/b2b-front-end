@@ -67,10 +67,10 @@
   float: left;
   height: 100%;
   text-align: center;
-  -webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-     -moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-      -ms-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
-       -o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000); 
+  -webkit-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+     -moz-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+      -ms-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
+       -o-transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
           transition-timing-function: cubic-bezier(0.645, 0.045, 0.355, 1.000);
 }
 .blueimp-gallery,
@@ -148,6 +148,28 @@
   font-size: 30px;
   text-decoration: none;
   cursor: pointer;
+}
+.blueimp-gallery > .delete {
+  position: absolute;
+  top: 0;
+  right: 60px; /* 60px boşluk bırakarak .close butonunun soluna hizala */
+  padding: 30px;
+  margin: -15px;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  float: right; /* butonları yan yana hizala */
+}
+.blueimp-gallery > .main-choose {
+  position: absolute;
+  top: 0;
+  right: 130px; /* 130px boşluk bırakarak .delete butonunun soluna hizala */
+  padding: 30px;
+  margin: -15px;
+  font-size: 20px;
+  text-decoration: none;
+  cursor: pointer;
+  float: right; /* butonları yan yana hizala */
 }
 .blueimp-gallery > .play-pause {
   position: absolute;

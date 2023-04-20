@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AdminDecodeService } from '../../login/services/admin-decode.service';
+import { AdminRoles } from '../../login/models/adminRoles';
 
 @Component({
   selector: 'app-navbar',
@@ -7,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class NavbarComponent {
 
+userName : string = "";
+userRole: AdminRoles[] = [];
+
+constructor(private adminDecodeService:AdminDecodeService){ }
+
+
+ngOnInit():void{
+  this.userName=this.adminDecodeService.getUserName();
+  this.userRole=this.adminDecodeService.getUserRole();
+}
 }

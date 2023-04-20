@@ -5,8 +5,8 @@
               <div class="dropdown profile-element">
                 <img alt="image" class="rounded-circle" src="./assets/AdminTema5/img/admin_profile.png"/>
                   <a data-toggle="dropdown" class="dropdown-toggle" href="#">
-                      <span class="block m-t-xs font-bold">Alparslan Akbaş</span>
-                      <span class="text-muted text-xs block">.Net Developer<b class="caret"></b></span>
+                      <span class="block m-t-xs font-bold" [innerText]="userName"></span>
+                      <span class="text-muted text-xs block">{{ userRole[0]?.role }}</span>
                   </a>
                   <ul class="dropdown-menu animated fadeInRight m-t-xs">
                       <li><a class="dropdown-item" href="./assets/AdminTema5/profile.html">Profil</a></li>
@@ -19,23 +19,19 @@
 
           </li>
           <!-- Anasayfa -->
-          <li>
-            <a routerLink="/admin" class="router-Link-Font-Color"><i class="fa fa-home"></i> <span class="nav-label">Anasayfa</span> <span class="fa arrow"></span></a>
+          <li routerLink="/admin">
+            <a class="router-Link-Font-Color"><i class="fa fa-home"></i> <span class="nav-label">Anasayfa</span> <span class="fa arrow"></span></a>
             <ul class="nav nav-second-level collapse">
-                <li><a href="./assets/AdminTema5/index.html">Dashboard v.1</a></li>
-                <li><a href="./assets/AdminTema5/dashboard_2.html">Dashboard v.2</a></li>
-                <li><a href="./assets/AdminTema5/dashboard_3.html">Dashboard v.3</a></li>
-                <li><a href="./assets/AdminTema5/dashboard_4_1.html">Dashboard v.4</a></li>
-                <li><a href="./assets/AdminTema5/dashboard_5.html">Dashboard v.5 </a></li>
+                <li><a routerLink="/admin">Anasayfa</a></li>
             </ul>
         </li>
         <!-- ***************** -->
           <!-- Ürünler -->
           <li>
-              <a href="./assets/AdminTema5/index.html"><i class="fa fa-apple"></i> <span class="nav-label">Ürünler</span> <span class="fa arrow"></span></a>
+              <a class="router-Link-Font-Color"><i class="fa fa-apple"></i> <span class="nav-label">Ürünler</span> <span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
-                  <li><a href="./assets/AdminTema5/index.html">Dashboard v.1</a></li>
-                  <li><a href="./assets/AdminTema5/dashboard_2.html">Dashboard v.2</a></li>
+                  <li><a routerLink="/admin/products">Ürünler Tablosu</a></li>
+                  <li><a routerLink="/admin/product/images">Ürünlere Ait Ana Resimler</a></li>
                   <li><a href="./assets/AdminTema5/dashboard_3.html">Dashboard v.3</a></li>
                   <li><a href="./assets/AdminTema5/dashboard_4_1.html">Dashboard v.4</a></li>
                   <li><a href="./assets/AdminTema5/dashboard_5.html">Dashboard v.5 </a></li>
@@ -44,7 +40,7 @@
           <!-- ***************** -->
           <!-- Fiyat Listesi -->
           <li>
-            <a href="./assets/AdminTema5/index.html"><i class="fa fa-try"></i> <span class="nav-label">Fiyat Listesi</span> <span class="fa arrow"></span></a>
+            <a href="./admin/price-list"><i class="fa fa-try"></i> <span class="nav-label">Fiyat Listesi</span> <span class="fa arrow"></span></a>
             <ul class="nav nav-second-level collapse">
                 <li><a href="./assets/AdminTema5/index.html">Dashboard v.1</a></li>
                 <li><a href="./assets/AdminTema5/dashboard_2.html">Dashboard v.2</a></li>
@@ -56,7 +52,7 @@
         <!-- ***************** -->
         <!-- Müşteriler -->
         <li>
-          <a href="./assets/AdminTema5/index.html"><i class="fa fa-users"></i> <span class="nav-label">Müşteriler</span> <span class="fa arrow"></span></a>
+          <a href="./admin/customers"><i class="fa fa-users"></i> <span class="nav-label">Müşteriler</span> <span class="fa arrow"></span></a>
           <ul class="nav nav-second-level collapse">
               <li><a href="./assets/AdminTema5/index.html">Dashboard v.1</a></li>
               <li><a href="./assets/AdminTema5/dashboard_2.html">Dashboard v.2</a></li>
@@ -68,7 +64,7 @@
       <!-- ***************** -->
       <!-- Siparişler -->
       <li>
-        <a href="./assets/AdminTema5/index.html"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Siparişler</span> <span class="fa arrow"></span></a>
+        <a href="./admin/orders"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Siparişler</span> <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
             <li><a href="./assets/AdminTema5/index.html">Dashboard v.1</a></li>
             <li><a href="./assets/AdminTema5/dashboard_2.html">Dashboard v.2</a></li>

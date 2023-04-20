@@ -1,0 +1,64 @@
+<div class="row">
+  <div class="col-lg-12">
+  <div class="ibox ">
+      <div class="ibox-content">
+          <h2>Ürününüze Ait Resimler</h2>
+          <p>
+            Burada Ürününüze Ait Satış İçin Gereken Fotoğraflarını Ekliyebilirsiniz. Öncelikle Eklemek İstediğiniz Resimleri Seçin ve <strong>Resim Değiştir</strong> Seçeneğini Kullanın.
+            Resmin Üzerine Bir Kez Tıklayarak Yön Tuşları İle Resimleri Gezebilirsiniz. Resimleri Silme İşlemi İçin Tıkladığınız Resime Tıklayıp Ardından <strong>X</strong> İle Büyük Ekrandan Çıkıp Gerçekleştirebilirsiniz.
+            Ürününüze Ana Resim Seçmek İçin Tıkladığınız Resimde Sağ Üst Köşede ki <strong>Resim</strong> İconuna Tıklayın Ardından <strong>X</strong> İle Geri Gelin ve İşleminize Devam Edin.
+          </p>
+          <div class="lightBoxGallery">
+            <a *ngFor="let image of productImages" href="/assets/images/{{image.imageUrl}}" title="Ürününüzün Ana Resmi" data-gallery="">
+              <img class="img-size" src="/assets/images/{{image.imageUrl}}"></a>
+            <div class="ibox">
+            <button type="submit" class="btn btn-w-m btn-outline btn-info center-buttons" (click)="uploadImage()"><i class="fa fa-image"></i> Resim Değiştir</button>
+            <div class="fileinput fileinput-new p-5" data-provides="fileinput">
+              <span class="btn btn-default btn-file"><span class="fileinput-new" >Resim Dosyası İçin Tıkla</span>
+              <span class="fileinput-exists">Kaldır</span><input multiple #image type="file" (change)="getImage($event)"/></span>
+              <span class="fileinput-filename"></span>
+              <a href="#" class="close fileinput-exists" data-dismiss="fileinput" style="float: none">×</a>
+          </div>
+          <strong class="text-color:red">*Resim Boyutu En Fazla 10MB Olabilir</strong>
+            </div>
+            <!-- The Gallery as lightbox dialog, should be a child element of the document body -->
+            <div id="blueimp-gallery" class="blueimp-gallery" style="display: none;">
+                <div class="slides" style="width: 134136px;"></div>
+                <h3 class="title">Ürününüze Ait Resim</h3>
+                <a class="prev">‹</a>
+                <a class="next">›</a>
+                <a class="close">×</a>
+                <a class="delete" *ngFor="let image of productImages" [swal]="deleteSwal" (confirm)="delete(image)"><i class="fa fa-trash"></i></a>
+                <a class="main-choose" *ngFor="let image of productImages" [swal]="mainSwal" (confirm)="setMainImage(image.id)" >
+                  <i class="fa fa-image"></i></a>
+                <a class="play-pause"></a>
+                <ol class="indicator"></ol>
+            </div>
+        </div>
+      </div>
+  </div>
+</div>
+</div>
+
+  <!-- Ürün Resimlerini Sil -->
+<swal
+  #deleteSwal
+  title="Silme İşlemi"
+  text="Resmi Silmek İstiyor musunuz ?"
+  type="question"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  [swalOptions]="{confirmButtonText: 'Evet' , cancelButtonText: 'Hayır'}">
+</swal>
+
+<!-- Ürün Resmini Ana Seç -->
+<swal
+  #mainSwal
+  title="Ana Resim İşlemi"
+  text="Bu Resmi Ana Resim Yapmak İstiyor Musunuz ?"
+  type="question"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  [swalOptions]="{confirmButtonText: 'Evet' , cancelButtonText: 'Hayır'}">
+</swal>
+<!-- ************************* -->
