@@ -36,6 +36,7 @@ export class ProductImagesComponent {
   getList(){
     this.productImageService.getList(this.productId).subscribe((res:any)=>{
       this.productImages=res.data;
+      console.log(res.data)
     },(err)=>{
       this.errorService.errorHandler(err);
     });
@@ -80,12 +81,19 @@ export class ProductImagesComponent {
 }
 
 
-  setMainImage(id:number){
-    this.productImageService.setMainImage(id).subscribe((res:any)=>{
-      this.getList();
-    },(err)=>{
-      this.errorService.errorHandler(err);
-    });
+setMainImage(id:number){
+  // Resmin sıralama index'ini al
+  const imageIndex = this.productImages.findIndex(img => img.id === id);
+  // Sadece sıralama index'ini kullanarak ana resmi güncelle
+  this.productImages[imageIndex].MainImage = true;
+  // Ana resim olarak ayarlanmayan resimlerin isMain özelliğini false yap
+  this.productImages.filter(img => img.id !== id).forEach(img => img.MainImage = false);
+  // Ana resmi güncellemek için servis çağırımı yap
+  this.productImageService.setMainImage(id).subscribe((res:any)=>{
+  this.getList();
+  },(err)=>{
+  this.errorService.errorHandler(err);
+  });
   }
 
 

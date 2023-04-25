@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { ProductsModule } from '../products.module';
+import { Product } from '../models/product';
 
 @Injectable({
   providedIn: 'root'
@@ -18,17 +18,17 @@ getList(){
   return this.http.get(api);
 }
 
-delete(product:ProductsModule){
+delete(product:Product){
   let api = this.apiPath+"Products/Delete";
   return this.http.post(api,product);
 }
 
-add(product:ProductsModule){
+add(product:Product){
   let api = this.apiPath+"Products/Add";
   return this.http.post(api,product);
 }
 
-update(product:ProductsModule){
+update(product:Product){
   let api = this.apiPath+"Products/Update";
   return this.http.post(api,product);
 }

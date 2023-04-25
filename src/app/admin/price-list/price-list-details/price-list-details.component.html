@@ -1,0 +1,107 @@
+<div class="wrapper wrapper-content animated fadeInRight">
+  <div class="row">
+      <div class="col-lg-12">
+      <div class="ibox ">
+          <div class="ibox-title">
+              <h5>Burada Bütün Fiyat Listelerini Kolayca Bulabilirsiniz</h5>
+              <!-- <hr>
+              <input class="form-control" type="search" [(ngModel)]="filterText" [ngModelOptions]="{standalone:true}"  placeholder="Burası Pipe İçin Tasarlanmıştır."> -->
+              <div class="ibox-tools">
+                  <a class="collapse-link">
+                      <i class="fa fa-chevron-up"></i>
+                  </a>
+                  <a class="close-link">
+                      <i class="fa fa-times"></i>
+                  </a>
+              </div>
+          </div>
+          <div class="ibox-content">
+            <button type="button" class="btn btn-w-m btn-outline btn-success mb-3" data-toggle="modal" data-target="#addpriceListDetailModal">
+              <i class="fa fa-plus-square"></i> Ürün Ekle
+          </button>
+            <div class="table-responsive">
+          <table class="table table-striped table-bordered table-hover dataTables-example" >
+          <thead>
+          <tr>
+              <th>#</th>
+              <th>Ürünün Adı</th>
+              <th>Ürünün Fiyatı</th>
+              <th style="width:14%;">İşlemler</th>
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor="let priceListDetail of priceListsDetails let index=index"> <!--Eğer pipe kullanılacaksa "let product of products | productPipe:filterText let index=index" Eklenmesi gerekiyor.  -->
+              <td [innerHTML]="index + 1" style="text-align: center;"></td>
+              <td [innerHTML]="priceListDetail.productName" style="text-align: center;"></td>
+              <td [innerHTML]="priceListDetail.price | currency: 'TRY': 'symbol-narrow': '1.2-2' " style="text-align: center;"></td>
+              <td>
+                <button class="btn btn-w-m btn-outline btn-danger center-buttons" [swal]="deleteSwal" (confirm)="delete(priceListDetail)"><i class="fa fa-trash-o"></i> Sil</button>
+              </td>
+          </tr>
+          </table>
+              </div>
+          </div>
+      </div>
+  </div>
+  </div>
+</div>
+<!-- Ekleme Modal -->
+<div class="modal inmodal" id="addpriceListDetailModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal-dialog">
+  <div class="modal-content animated bounceInRight">
+    <form #addForm="ngForm" (ngSubmit)="add(addForm)">
+      <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+          <i class="fa fa-try modal-icon"></i>
+          <h4 class="modal-title">Ürünün Bilgilerini Eklemek İçin Alttaki Formu Eksiksiz Doldurun.!</h4>
+          <small class="font-bold"><small style="color: red;">*</small> Ürünün Bilgilerini Eklerken Bilgilerin Kurallara Uygun Doldurulacağını Unutmayınız.!</small>
+      </div>
+      <div class="modal-body">
+          <label for=""><strong>Ürün Seçiniz</strong></label>
+          <select class="form-control" ngModel name="productId" #productId="ngModel" required>
+              <option value="" disabled selected>Ürün Seçiniz</option>
+              <option [value]="product.id" [innerText]="product.name" *ngFor="let product of products"></option>
+          </select>
+          <div class="alert alert-danger mt-3" *ngIf="productId.invalid && (productId.dirty || productId.touched)">
+              <strong>*Ekleme İşlemi İçin Listeden Ürünü Seçmelisiniz.!</strong>
+          </div>
+          <label class="mt-3" for=""><strong>Ürünün Fiyatını Giriniz</strong></label>
+          <input type="number" class="form-control" ngModel name="price" #price="ngModel" required min="1">
+          <div class="alert alert-danger mt-3" *ngIf="price.errors && (price.dirty || price.touched)">
+            <ng-container *ngIf="price.errors['required']">
+              <strong>*Ekleme İşlemi İçin Fiyat Girilmesi Zorunludur.!</strong>
+            </ng-container>
+            <ng-container *ngIf="price.errors['min']">
+              <strong>*Ekleme İşlemi İçin Fiyatınız 0'dan Büyük Olmalıdır.!</strong>
+            </ng-container>
+            <ng-container *ngIf="price.errors['pattern']">
+              <strong>*Lütfen Geçerli Bir Fiyat Giriniz.!</strong>
+            </ng-container>
+          </div>
+      </div>
+      <div class="modal-footer">
+          <button type="button" class="btn btn-danger" data-dismiss="modal">Çıkış</button>
+          <button type="submit" class="btn btn-primary" [disabled]="addForm.invalid">Ürün Bilgilerini Kaydet</button>
+      </div>
+  </form>
+
+
+        </div>
+      </div>
+  </div>
+<!-- ******************** -->
+
+<!-- Silme SweetAler2 -->
+<swal
+  #deleteSwal
+  title="Silme İşlemi"
+  text="Ürün Fiyatını Silmek İstiyor musunuz ?"
+  type="question"
+  [showCancelButton]="true"
+  [focusCancel]="true"
+  [swalOptions]="{confirmButtonText: 'Evet' , cancelButtonText: 'Hayır'}">
+</swal>
+<!-- ******************** -->
+
+
+

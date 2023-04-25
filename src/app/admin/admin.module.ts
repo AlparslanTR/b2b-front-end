@@ -7,6 +7,7 @@ import { LoginModule } from './login/login.module';
 import { ProductsModule } from './products/products.module'
 import { FormsModule } from '@angular/forms';
 import { ProductImagesModule } from './products/product-images/product-images.module';
+import { PriceListModule } from './price-list/price-list.module';
 
 
 
@@ -18,14 +19,16 @@ import { ProductImagesModule } from './products/product-images/product-images.mo
     LayoutsModule,
     LoginModule,
     ProductsModule,
-    FormsModule
+    FormsModule,
+    PriceListModule
   ],
   exports:[
     HomeModule,
     LayoutsModule,
     NavbarModule,
     LoginModule,
-    ProductsModule
+    ProductsModule,
+    PriceListModule
   ]
 })
 export class AdminModule { }

@@ -3,7 +3,7 @@
       <div class="col-lg-12">
       <div class="ibox ">
           <div class="ibox-title">
-              <h5>Burada Bütün Ürünlerin Listesini Kolayca Bulabilirsiniz</h5>
+              <h5>Burada Bütün Fiyat Listelerini Kolayca Bulabilirsiniz</h5>
               <!-- <hr>
               <input class="form-control" type="search" [(ngModel)]="filterText" [ngModelOptions]="{standalone:true}"  placeholder="Burası Pipe İçin Tasarlanmıştır."> -->
               <div class="ibox-tools">
@@ -16,30 +16,26 @@
               </div>
           </div>
           <div class="ibox-content">
-            <button type="button" class="btn btn-w-m btn-outline btn-success mb-3" data-toggle="modal" data-target="#addProductModal">
-              <i class="fa fa-plus-square"></i> Ürün Ekle
+            <button type="button" class="btn btn-w-m btn-outline btn-success mb-3" data-toggle="modal" data-target="#addPriceListModal">
+              <i class="fa fa-plus-square"></i> Fiyat Ekle
           </button>
             <div class="table-responsive">
           <table class="table table-striped table-bordered table-hover dataTables-example" >
           <thead>
           <tr>
               <th>#</th>
-              <th>Ürün Adı</th>
-              <th>Ürün Resmi</th>
+              <th>Liste Adı</th>
               <th style="width:35%;">İşlemler</th>
           </tr>
           </thead>
           <tbody>
-          <tr *ngFor="let product of products let index=index"> <!--Eğer pipe kullanılacaksa "let product of products | productPipe:filterText let index=index" Eklenmesi gerekiyor.  -->
+          <tr *ngFor="let priceList of priceLists let index=index"> <!--Eğer pipe kullanılacaksa "let product of products | productPipe:filterText let index=index" Eklenmesi gerekiyor.  -->
               <td [innerHTML]="index + 1" style="text-align: center;"></td>
-              <td [innerHTML]="product.name" style="text-align: center;"></td>
+              <td [innerHTML]="priceList.name" style="text-align: center;"></td>
               <td>
-                <img class="img-size-table" [src]="product.mainImageUrl == '' ? './assets/images/notfound.png' : './assets/images/' + product.mainImageUrl" alt="">
-              </td>
-              <td>
-                <button class="btn btn-w-m btn-outline btn-danger center-buttons" [swal]="deleteSwal" (confirm)="delete(product)"><i class="fa fa-trash-o"></i> Sil</button>
-                <button class="btn btn-w-m btn-outline btn-warning center-buttons" (click)="getProduct(product)" data-toggle="modal" data-target="#updateProductModal"><i class="fa fa-recycle"></i> Güncelle</button>
-                <button class="btn btn-w-m btn-outline btn-info center-buttons" routerLink="/products/{{ product.id }}/images"><i class="fa fa-image"></i> Resime Git</button>
+                <button class="btn btn-w-m btn-outline btn-danger center-buttons" [swal]="deleteSwal" (confirm)="delete(priceList)"><i class="fa fa-trash-o"></i> Sil</button>
+                <button class="btn btn-w-m btn-outline btn-warning center-buttons" (click)="getPriceList(priceList)" data-toggle="modal" data-target="#updateListModal"><i class="fa fa-recycle"></i> Güncelle</button>
+                <button class="btn btn-w-m btn-outline btn-info center-buttons" routerLink="/price-list/{{ priceList.id }}"><i class="fa fa-try"></i> Fiyat Listesi Detayları</button>
               </td>
           </tr>
           </table>
@@ -50,18 +46,18 @@
   </div>
 </div>
 <!-- Ekleme Modal -->
-<div class="modal inmodal" id="addProductModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal inmodal" id="addPriceListModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content animated bounceInRight">
           <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <i class="fa fa-glass modal-icon"></i>
-              <h4 class="modal-title">Ürün Eklemek İçin Alttaki Bilgileri Eksiksiz Doldurun</h4>
-              <small class="font-bold"><small style="color: red;">*</small> Ürün Eklerken Bilgilerin Kurallara Uygun Doldurulacağını Unutmayınız.!</small>
+              <i class="fa fa-try modal-icon"></i>
+              <h4 class="modal-title">Fiyat Listesi Eklemek İçin Alttaki Bilgileri Eksiksiz Doldurun</h4>
+              <small class="font-bold"><small style="color: red;">*</small> Fiyat Listesi Eklerken Bilgilerin Kurallara Uygun Doldurulacağını Unutmayınız.!</small>
           </div>
           <div class="modal-body">
-             <label for=""><strong>Ürün Adını Giriniz</strong></label>
-             <input  class="form-control" type="text" #productName (input)="checkAddValidity(productName)">
+             <label for=""><strong>Fiyat Listesi Adını Giriniz</strong></label>
+             <input  class="form-control" type="text" #name (input)="checkAddValidity(name)">
              <div class="alert alert-danger mt-3" *ngIf="alertShow">
              <strong>*Ekleme İşlemi İçin Ürünün Adı En Az 3 Karakter Olmalıdır.!</strong>
              <hr>
@@ -70,7 +66,7 @@
           </div>
           <div class="modal-footer">
               <button type="button" class="btn btn-danger" data-dismiss="modal">Çıkış</button>
-              <button type="button" class="btn btn-primary" [disabled]="disableAdd" (click)="add(productName)">Ürün Bilgilerini Kaydet</button>
+              <button type="button" class="btn btn-primary" [disabled]="disableAdd" (click)="add(name)">Fiyat Listesini Kaydet</button>
           </div>
       </div>
   </div>
@@ -78,27 +74,27 @@
 <!-- ******************** -->
 
 <!-- Güncelleme Modal -->
-<div class="modal inmodal" id="updateProductModal" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal inmodal" id="updateListModal" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog">
   <div class="modal-content animated bounceInRight">
           <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
-              <i class="fa fa-glass modal-icon"></i>
-              <h4 class="modal-title">Ürünü Güncellemek İçin Alttaki Bilgileri Eksiksiz Doldurun</h4>
-              <small class="font-bold"><small style="color: red;">*</small> Ürün Güncellerken Bilgilerin Kurallara Uygun Doldurulacağını Unutmayınız.!</small>
+              <i class="fa fa-try modal-icon"></i>
+              <h4 class="modal-title">Fiyat Listesi Güncellemek İçin Alttaki Bilgileri Eksiksiz Doldurun</h4>
+              <small class="font-bold"><small style="color: red;">*</small> Fiyat Listesi Güncellerken Bilgilerin Kurallara Uygun Doldurulacağını Unutmayınız.!</small>
           </div>
           <div class="modal-body">
             <label for=""><strong>Yeni Ürün Adını Giriniz</strong></label>
-            <input class="form-control" type="text" [(ngModel)]="editedProduct.name" name="productName" (keyup)="checkUpdateValidity($event)">
+            <input class="form-control" type="text" [(ngModel)]="editedPriceList.name" name="priceListName" (keyup)="checkUpdateValidity($event)">
             <div class="alert alert-danger mt-3" *ngIf="alertShow">
-              <strong>*Güncelleme İşlemi İçin Ürünün Adı En Az 3 Karakter Olmalıdır.!</strong>
+              <strong>*Güncelleme İşlemi İçin Fiyat Listesinin Adı En Az 3 Karakter Olmalıdır.!</strong>
               <hr>
-              <strong>*Güncelleme İşlemi İçin Ürünün Adı Boş Bırakılamaz.!</strong>
+              <strong>*Güncelleme İşlemi İçin Fiyat Listesinin Adı Boş Bırakılamaz.!</strong>
             </div>
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Çıkış</button>
-            <button type="button" class="btn btn-primary" (click)="update()" [disabled]="disableUpdate">Ürün Bilgilerini Kaydet</button>
+            <button type="button" class="btn btn-primary" (click)="update()" [disabled]="disableUpdate">Fiyat Listesi Bilgilerini Kaydet</button>
           </div>
       </div>
   </div>
@@ -109,7 +105,7 @@
 <swal
   #deleteSwal
   title="Silme İşlemi"
-  text="Ürünü Silmek İstiyor musunuz ?"
+  text="Fiyat Listesini Silmek İstiyor musunuz ?"
   type="question"
   [showCancelButton]="true"
   [focusCancel]="true"

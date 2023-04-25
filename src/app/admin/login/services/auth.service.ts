@@ -48,7 +48,7 @@ export class AuthService {
       .subscribe((x:any) => {
         this.adminToken= x.data
         localStorage.setItem("adminToken",this.adminToken.adminAccessToken);
-        this.router.navigate(["/admin"]);
+        this.router.navigate(["/"]);
         this.toastr.success("Giriş Yapıldı Hoşgeldiniz "+this.adminDecodeService.getUserName(),"Hoşgeldiniz");
       },(err:any) => {
         this.errorService.errorHandler(err);
