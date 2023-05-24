@@ -16,7 +16,7 @@ constructor(private adminDecodeService:AdminDecodeService){ }
 
 
 ngOnInit():void{
-  this.userName=this.adminDecodeService.getUserName();
-  this.userRole=this.adminDecodeService.getUserRole();
+  this.userName=this.adminDecodeService.getCustomerName();
+  this.userRole=this.adminDecodeService.getCustomerRole();
 }
 }

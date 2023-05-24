@@ -8,10 +8,13 @@ import { AuthGuard } from './admin/login/guard/auth.guard';
 import { ProductsComponent } from './admin/products/products.component';
 import { ProductImagesComponent } from './admin/products/product-images/product-images.component';
 import { PriceListDetailsComponent } from './admin/price-list/price-list-details/price-list-details.component';
-import { ProfileComponent } from './admin/profile/profile.component';
 import { CustomersComponent } from './admin/customers/customers.component';
 import { OrdersComponent } from './admin/orders/orders.component';
+import { OrderDetailComponent } from './admin/orders/order-details/order-detail/order-detail.component';
+import { ClaimsComponent } from './admin/claims/claims/claims.component';
 
+
+// Admin ve Müşterilerin Sayfası
 const routes: Routes = [
   {
     path: 'admin-login',
@@ -24,22 +27,33 @@ const routes: Routes = [
     canActivateChild: [AuthGuard],
     children: [
       {
-        path: '',
+        path: 'Anasayfa',
         children: [
           {
             path: '',
             component: HomeComponent,
             loadChildren: ()=> import('./admin/home/home.module').then(m=> m.HomeModule)
           },
-          // {
-          //   path: 'order-detail/:id',
-          //   component: OrderDetailComponent,
-          //   loadChildren: ()=> import('./admin/orders/order-detail/order-detail.module').then(m=> m.OrderDetailModule)
-          // }
+
         ]
       },
       {
-        path: 'products',
+        path:'Siparişler',
+        children:[
+          {
+            path:'',
+            component:OrdersComponent,
+            loadChildren:()=>import('./admin/orders/orders.module').then(x=>x.OrdersModule)
+          },
+          {
+            path:'siparis-detaylari/:id',
+            component:OrderDetailComponent,
+            loadChildren:()=> import('./admin/orders/order-details/order-detail/order-detail.module').then(x=>x.OrderDetailModule)
+          }
+        ]
+      },
+      {
+        path: 'Ürünler',
         children: [
           {
             path: '',
@@ -47,14 +61,14 @@ const routes: Routes = [
             loadChildren: ()=> import('./admin/products/products.module').then(m=> m.ProductsModule)
           },
           {
-            path: ':id/images',
+            path: ':id/resim',
             component: ProductImagesComponent,
             loadChildren: ()=> import('./admin/products/product-images/product-images.module').then(m=> m.ProductImagesModule)
           }
         ]
       },
       {
-        path: 'price-list',
+        path: 'Fiyat-Listesi',
         children: [
           {
             path: '',
@@ -69,7 +83,7 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'customers',
+        path: 'Müşteriler',
         children: [
           {
             path: '',
@@ -79,12 +93,12 @@ const routes: Routes = [
         ]
       },
       {
-        path: 'profile',
-        component: ProfileComponent,
-        loadChildren: ()=> import('./admin/profile/profile.module').then(m=> m.ProfileModule)
+        path:'Yetkiler',
+        component:ClaimsComponent,
+        loadChildren:()=> import('./admin/claims/claims/claims.module').then(x=>x.ClaimsModule)
       }
     ]
-  }
+  },
 ];
 
 @NgModule({
@@ -92,4 +106,5 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 export class AppRoutingModule { }
+
 

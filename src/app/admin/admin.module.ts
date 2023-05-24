@@ -6,8 +6,10 @@ import { NavbarModule } from './layouts/navbar/navbar.module';
 import { LoginModule } from './login/login.module';
 import { ProductsModule } from './products/products.module'
 import { FormsModule } from '@angular/forms';
-import { ProductImagesModule } from './products/product-images/product-images.module';
 import { PriceListModule } from './price-list/price-list.module';
+import { CustomersModule } from './customers/customers.module';
+import { OrdersModule } from './orders/orders.module';
+import { ClaimsModule } from './claims/claims/claims.module';
 
 
 
@@ -20,7 +22,10 @@ import { PriceListModule } from './price-list/price-list.module';
     LoginModule,
     ProductsModule,
     FormsModule,
-    PriceListModule
+    PriceListModule,
+    CustomersModule,
+    OrdersModule,
+    ClaimsModule
   ],
   exports:[
     HomeModule,
@@ -28,7 +33,10 @@ import { PriceListModule } from './price-list/price-list.module';
     NavbarModule,
     LoginModule,
     ProductsModule,
-    PriceListModule
+    PriceListModule,
+    CustomersModule,
+    OrdersModule,
+    ClaimsModule
   ]
 })
 export class AdminModule { }

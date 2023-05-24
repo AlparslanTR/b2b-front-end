@@ -39,7 +39,7 @@
               <td>
                 <button class="btn btn-w-m btn-outline btn-danger center-buttons" [swal]="deleteSwal" (confirm)="delete(product)"><i class="fa fa-trash-o"></i> Sil</button>
                 <button class="btn btn-w-m btn-outline btn-warning center-buttons" (click)="getProduct(product)" data-toggle="modal" data-target="#updateProductModal"><i class="fa fa-recycle"></i> Güncelle</button>
-                <button class="btn btn-w-m btn-outline btn-info center-buttons" routerLink="/products/{{ product.id }}/images"><i class="fa fa-image"></i> Resime Git</button>
+                <button class="btn btn-w-m btn-outline btn-info center-buttons" routerLink="/Ürünler/{{ product.id }}/resim"><i class="fa fa-image"></i> Resime Git</button>
               </td>
           </tr>
           </table>

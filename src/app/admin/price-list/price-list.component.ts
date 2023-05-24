@@ -67,8 +67,8 @@ export class PriceListComponent {
           buttons: [
             { extend: 'copy' },
             { extend: 'csv' },
-            { extend: 'excel', title: 'Ürünler Tablosu Listesi' },
-            { extend: 'pdf', title: 'Ürünler Tablosu Listesi' },
+            { extend: 'excel', title: 'Fiyat Listesi Tablosu ' },
+            { extend: 'pdf', title: 'Fiyat Listesi Tablosu' },
             {
               extend: 'print', title:"Ürünler Listesi",
               customize: function (win: { document: { body: any; };  }) {

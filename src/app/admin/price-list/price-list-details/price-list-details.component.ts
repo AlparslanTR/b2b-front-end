@@ -50,7 +50,6 @@ export class PriceListDetailsComponent implements OnInit {
   getList() {
     this.priceListDetailService.getList(this.priceListId).subscribe((res: any) => {
       this.priceListsDetails = res.data;
-      console.log(res.data);
       setTimeout(() => {
         $('.dataTables-example').DataTable({
           language: {

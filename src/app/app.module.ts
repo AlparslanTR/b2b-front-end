@@ -7,13 +7,15 @@ import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http'
 import { ToastrModule } from 'ngx-toastr';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 import { AuthInterceptor } from './admin/login/interceptor/auth.interceptor';
-
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     AdminModule,
     HttpClientModule,
@@ -22,10 +24,12 @@ import { AuthInterceptor } from './admin/login/interceptor/auth.interceptor';
       closeButton:true,
       progressBar:true
     }),
-    SweetAlert2Module
+    SweetAlert2Module,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [
-    {provide: 'apiPath', useValue:'https://localhost:7146/api/'},
+    { provide: 'apiPath', useValue:'https://localhost:7146/api/'},
     { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true}
   ],
   bootstrap: [AppComponent]

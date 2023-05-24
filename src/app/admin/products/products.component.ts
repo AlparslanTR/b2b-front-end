@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductsService } from './services/products.service';
 import { ErrorService } from 'src/app/services/error.service';
 import { Product } from './models/product';
-import { ProductsModule } from './products.module';
 import { ToastrService } from 'ngx-toastr';
 
 declare var $: any;

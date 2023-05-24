@@ -13,21 +13,21 @@ roles: AdminRoles[] = [];
 
 constructor() { }
 
- getUserId():number{ //Tokenden kullanıcının Idsini alıyoruz
-  let decode = this.jwtHelper.decodeToken(localStorage.getItem("adminToken"));
+ getCustomerId():number{ //Tokenden Müşterinin Idsini alıyoruz
+  let decode = this.jwtHelper.decodeToken(localStorage.getItem("CustomerToken"));
   var userId = Object.keys(decode).filter(x=>x.endsWith("/nameidentifier"))[0];
   return +decode[userId];
 }
 
-getUserName():string{ //Tokenden kullanıcının Adını alıyoruz
-  let decode = this.jwtHelper.decodeToken(localStorage.getItem("adminToken"));
+getCustomerName():string{ //Tokenden Müşterinin Adını alıyoruz
+  let decode = this.jwtHelper.decodeToken(localStorage.getItem("CustomerToken"));
   var userName = Object.keys(decode).filter(x=>x.endsWith("/name"))[0];
   return decode[userName];
 }
 
-getUserRole(){ //Tokenden kullanıcının rolünü alıyoruz
+getCustomerRole(){ //Tokenden Müşterinin rolünü alıyoruz
   this.roles = [];
-  let decode = this.jwtHelper.decodeToken(localStorage.getItem("adminToken"));
+  let decode = this.jwtHelper.decodeToken(localStorage.getItem("CustomerToken"));
   var userRoles = Object.keys(decode).filter(x=>x.endsWith("/role"));
   userRoles.forEach(element => {
     let model: AdminRoles = new AdminRoles();

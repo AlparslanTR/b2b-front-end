@@ -1,12 +1,12 @@
+import { CustomerToken } from './../models/customerToken';
 import { AdminToken } from './../models/adminToken';
 import { AdminLogin } from './../models/adminLogin';
 import { HttpClient } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { IndividualConfig, ToastrService } from 'ngx-toastr';
-import { concatMap, take, timer } from 'rxjs';
+import { concatMap, delay, take, timer } from 'rxjs';
 import { ErrorService } from 'src/app/services/error.service';
-import jwtDecode from 'jwt-decode';
 import { AdminDecodeService } from './admin-decode.service';
 
 @Injectable({
@@ -14,7 +14,7 @@ import { AdminDecodeService } from './admin-decode.service';
 })
 export class AuthService {
 
-  adminToken: AdminToken = new AdminToken();
+  customerToken: CustomerToken = new CustomerToken();
   adminLogin: AdminLogin = new AdminLogin();
   constructor
   (
@@ -27,14 +27,14 @@ export class AuthService {
   ) { }
 
   isAuthenticate(){
-    if (localStorage.getItem("adminToken")) {
+    if (localStorage.getItem("CustomerToken")) {
         return true;
     }
     return false;
   }
 
   login(AdminLogin: AdminLogin){
-    let api = this.apiPath+"Auth/UserLogin";
+    let api = this.apiPath+"Auth/CustomerUserLogin";
 
     this.toastr.info("Kullanıcı Mailiniz ve Şifreniz Kontrol Ediliyor Lütfen Bekleyiniz.!","Giriş Kontrolü.!",{timeOut:2000}as Partial<IndividualConfig>);
 
@@ -46,17 +46,17 @@ export class AuthService {
         concatMap(() => this.http.post(api,AdminLogin))
       )
       .subscribe((x:any) => {
-        this.adminToken= x.data
-        localStorage.setItem("adminToken",this.adminToken.adminAccessToken);
-        this.router.navigate(["/"]);
-        this.toastr.success("Giriş Yapıldı Hoşgeldiniz "+this.adminDecodeService.getUserName(),"Hoşgeldiniz");
+        this.customerToken= x.data
+        localStorage.setItem("CustomerToken",this.customerToken.customerAccessToken);
+        this.router.navigate(["/Anasayfa"]);
+        window.location.replace("/Anasayfa");
       },(err:any) => {
         this.errorService.errorHandler(err);
       })
   }
 
   logOut(){
-    localStorage.removeItem("adminToken");
+    localStorage.removeItem("CustomerToken");
     this.router.navigate(["/admin-login"]);
     this.toastr.success("Çıkış Başarılı");
   }

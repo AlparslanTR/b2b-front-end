@@ -19,60 +19,52 @@
 
           </li>
           <!-- Anasayfa -->
-          <li routerLink="/admin">
+          <li routerLinkActive="active">
             <a class="router-Link-Font-Color"><i class="fa fa-home"></i> <span class="nav-label">Anasayfa</span> <span class="fa arrow"></span></a>
             <ul class="nav nav-second-level collapse">
-                <li><a routerLink="/admin">Anasayfa</a></li>
+                <li><a routerLink="/Anasayfa">Anasayfa</a></li>
             </ul>
         </li>
         <!-- ***************** -->
           <!-- Ürünler -->
-          <li>
+          <li routerLinkActive="active">
               <a class="router-Link-Font-Color"><i class="fa fa-apple"></i> <span class="nav-label">Ürünler</span> <span class="fa arrow"></span></a>
               <ul class="nav nav-second-level collapse">
-                  <li><a routerLink="/products">Ürünler Tablosu</a></li>
-                  <li><a href="./assets/AdminTema5/dashboard_3.html">Dashboard v.3</a></li>
-                  <li><a href="./assets/AdminTema5/dashboard_4_1.html">Dashboard v.4</a></li>
-                  <li><a href="./assets/AdminTema5/dashboard_5.html">Dashboard v.5 </a></li>
+                  <li><a routerLink="/Ürünler">Ürün Tablosu</a></li>
               </ul>
           </li>
           <!-- ***************** -->
           <!-- Fiyat Listesi -->
-          <li>
+          <li routerLinkActive="active">
             <a class="router-Link-Font-Color"><i class="fa fa-try"></i> <span class="nav-label">Fiyat Listesi</span> <span class="fa arrow"></span></a>
             <ul class="nav nav-second-level collapse">
-                <li><a routerLink="/price-list">Fiyat Tablosu</a></li>
-                <li><a href="./assets/AdminTema5/dashboard_2.html">Dashboard v.2</a></li>
-                <li><a href="./assets/AdminTema5/dashboard_3.html">Dashboard v.3</a></li>
-                <li><a href="./assets/AdminTema5/dashboard_4_1.html">Dashboard v.4</a></li>
-                <li><a href="./assets/AdminTema5/dashboard_5.html">Dashboard v.5 </a></li>
+                <li><a routerLink="/Fiyat-Listesi">Fiyat Tablosu</a></li>
             </ul>
         </li>
         <!-- ***************** -->
         <!-- Müşteriler -->
-        <li>
-          <a href="./admin/customers"><i class="fa fa-users"></i> <span class="nav-label">Müşteriler</span> <span class="fa arrow"></span></a>
+        <li routerLinkActive="active">
+          <a class="router-Link-Font-Color"><i class="fa fa-users"></i> <span class="nav-label">Müşteriler</span> <span class="fa arrow"></span></a>
           <ul class="nav nav-second-level collapse">
-              <li><a href="./assets/AdminTema5/index.html">Dashboard v.1</a></li>
-              <li><a href="./assets/AdminTema5/dashboard_2.html">Dashboard v.2</a></li>
-              <li><a href="./assets/AdminTema5/dashboard_3.html">Dashboard v.3</a></li>
-              <li><a href="./assets/AdminTema5/dashboard_4_1.html">Dashboard v.4</a></li>
-              <li><a href="./assets/AdminTema5/dashboard_5.html">Dashboard v.5 </a></li>
+              <li><a routerLink="/Müşteriler">Müşteri Tablosu</a></li>
           </ul>
       </li>
       <!-- ***************** -->
       <!-- Siparişler -->
-      <li>
-        <a href="./admin/orders"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Siparişler</span> <span class="fa arrow"></span></a>
+      <li routerLinkActive="active">
+        <a class="router-Link-Font-Color"><i class="fa fa-shopping-cart"></i> <span class="nav-label">Siparişler</span> <span class="fa arrow"></span></a>
         <ul class="nav nav-second-level collapse">
-            <li><a href="./assets/AdminTema5/index.html">Dashboard v.1</a></li>
-            <li><a href="./assets/AdminTema5/dashboard_2.html">Dashboard v.2</a></li>
-            <li><a href="./assets/AdminTema5/dashboard_3.html">Dashboard v.3</a></li>
-            <li><a href="./assets/AdminTema5/dashboard_4_1.html">Dashboard v.4</a></li>
-            <li><a href="./assets/AdminTema5/dashboard_5.html">Dashboard v.5 </a></li>
+            <li><a routerLink="/Siparişler">Şipariş Tablosu</a></li>
         </ul>
     </li>
     <!-- ***************** -->
+      <!-- Yetkiler -->
+    <li routerLinkActive="active">
+      <a class="router-Link-Font-Color"><i class="fa fa-vcard"></i> <span class="nav-label">Yetkiler</span> <span class="fa arrow"></span></a>
+      <ul class="nav nav-second-level collapse">
+          <li><a routerLink="/Yetkiler">Yetkiler</a></li>
+      </ul>
+  </li>
       </ul>
   </div>
 </nav>
