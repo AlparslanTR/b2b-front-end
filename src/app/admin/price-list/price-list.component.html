@@ -35,7 +35,7 @@
               <td>
                 <button class="btn btn-w-m btn-outline btn-danger center-buttons" [swal]="deleteSwal" (confirm)="delete(priceList)"><i class="fa fa-trash-o"></i> Sil</button>
                 <button class="btn btn-w-m btn-outline btn-warning center-buttons" (click)="getPriceList(priceList)" data-toggle="modal" data-target="#updateListModal"><i class="fa fa-recycle"></i> Güncelle</button>
-                <button class="btn btn-w-m btn-outline btn-info center-buttons" routerLink="/price-list/{{ priceList.id }}"><i class="fa fa-try"></i> Fiyat Listesi Detayları</button>
+                <button class="btn btn-w-m btn-outline btn-info center-buttons" routerLink="/Fiyat-Listesi/{{ priceList.id }}"><i class="fa fa-try"></i> Fiyat Listesi Detayları</button>
               </td>
           </tr>
           </table>
